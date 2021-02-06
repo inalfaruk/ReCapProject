@@ -7,8 +7,9 @@ using System.Text;
 
 namespace Business.Concrete
 {
-   public class CarManager : ICarService
+    public class CarManager : ICarService
     {
+
 
         ICarDal _carDal;
 
@@ -24,5 +25,22 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
+
+       
+
+
+        
+
+        public List<Car> GetCarsByBranId(int id)
+        {
+            return _carDal.GetAll(p => p.BrandId==id);
+        }
+
+        
+
+        public List<Car> GetCarsByColorId(int id)
+        {
+            return _carDal.GetAll(p => p.ColorId == id);
+        }
     }
 }
