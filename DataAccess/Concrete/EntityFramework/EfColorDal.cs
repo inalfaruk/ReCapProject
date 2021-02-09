@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Concrete
+namespace DataAccess.Concrete.EntityFramework
 {
     public  class EfColorDal : EfEntityRepositoryBase<Color,RentaCarContext>,IColorDal
     {

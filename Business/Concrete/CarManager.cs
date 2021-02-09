@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +26,7 @@ namespace Business.Concrete
             if (car.DailyPrice>0)
             {
                 _carDal.Add(car);
+                Console.WriteLine("Araç Eklendi." + car.Description);
             }
             else
             {
@@ -32,11 +34,20 @@ namespace Business.Concrete
             }
         }
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
+
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
         }
 
+        public List<Color> GetById()
+        {
+            throw new NotImplementedException();
+        }
 
         public List<Car> GetCarsByBranId(int id)
         {
@@ -49,5 +60,16 @@ namespace Business.Concrete
         {
             return _carDal.GetAll(p => p.ColorId == id);
         }
+
+        public List<DailyPriceDto> GetDailyPrice()
+        {
+            return _carDal.GetDailyPrice();
+        }
+
+        public void Update(Car car)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

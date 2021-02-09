@@ -17,7 +17,6 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-
         public void Add(Brand brand)
         {
 
@@ -26,11 +25,29 @@ namespace Business.Concrete
                 Console.WriteLine("Marka ismi minimum iki karakterter olmalıdır.");
             }
             else
+            {
                 _brandDal.Add(brand);
 
+                Console.WriteLine("Kayıt Tamamlanmıştır. \n Marka: " + brand.Name);
+            }
+        }
+
+        public void Delete(Brand brand)
+        {
+            _brandDal.Delete(brand);
         }
 
         public List<Brand> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Color> GetById()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Brand brand)
         {
             throw new NotImplementedException();
         }

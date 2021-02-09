@@ -12,20 +12,14 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //AddCar();
+            //AddColor();
+            //AddBrand();
+            //DailyPrice();
+            //GetCarsByBrandId();
 
 
-
-            CarManager carManager = new CarManager(new EfCarDal());
-
-            foreach (var car in carManager.GetCarsByBranId(1))
-            {
-                Console.WriteLine(car.ModelYear,car.DailyPrice);
-
-            }
-
-
-
-
+           //CarDelete();
 
 
 
@@ -39,10 +33,65 @@ namespace ConsoleUI
 
         }
 
+        private static void CarDelete()
+        {
+            Car car = new Car();
+
+            CarManager carManager = new CarManager(new EfCarDal());
+            car.Id = 2;
+
+            carManager.Delete(car);
+        }
+
+        private static void GetCarsByBrandId()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            foreach (var car in carManager.GetCarsByBranId(1))
+            {
+                Console.WriteLine(car.ModelYear, car.DailyPrice);
+
+            }
+        }
+
+        private static void AddCar()
+        {
+            Brand brand = new Brand();
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            //brand.Id = 1; // identity açık olduğundan id girmiyorum.
+            brand.Name = "Mercedes";
+            brandManager.Add(brand);
+        }
+
+        private static void AddBrand()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            Brand brand = new Brand();
+            brand.Name = "Bmw";
+            brandManager.Add(brand);
+        }
+
+        private static void AddColor()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            Color color = new Color();
+            color.Name = "Mavi";
+            colorManager.Add(color);
+        }
+
+        private static void DailyPrice()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
 
 
+            foreach (var car in carManager.GetDailyPrice())
+            {
+                Console.WriteLine("Araba= " + car.CarName + " - Marka= " + car.BrandName + " - Renk= " + car.ColorName + " - Günlük Ücret= " + car.DailyPrice);
+            }
+        }
 
-            static void Inmemory()
+
+        static void Inmemory()
             {
                 CarManager carManager = new CarManager(new InMemoryCarDal());
 
