@@ -47,7 +47,9 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetCarsByBranId(1))
+            var result = carManager.GetAllCarsByBranId(1);
+
+            foreach (var car in result.Data)
             {
                 Console.WriteLine(car.ModelYear, car.DailyPrice);
 
@@ -83,8 +85,9 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
+            var result = carManager.GetDailyPrice();
 
-            foreach (var car in carManager.GetDailyPrice())
+            foreach (var car in result.Data)
             {
                 Console.WriteLine("Araba= " + car.CarName + " - Marka= " + car.BrandName + " - Renk= " + car.ColorName + " - Günlük Ücret= " + car.DailyPrice);
             }
@@ -95,7 +98,9 @@ namespace ConsoleUI
             {
                 CarManager carManager = new CarManager(new InMemoryCarDal());
 
-                foreach (var car in carManager.GetAll())
+            var result = carManager.GetAll();
+
+                foreach (var car in result.Data)
                 {
                     Console.WriteLine("id:{0} | Marka:{1} | Renk:{2} | Açıklama: {3}  | Günlük Ücret: {4} ", car.Id, car.BrandId, car.ColorId, car.Description, car.DailyPrice);
 

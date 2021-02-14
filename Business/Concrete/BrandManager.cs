@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using DataAccess.Abstract;
 using System.Text;
+using Core.Utilities.Results;
+using Bussiness.Constants;
 
 namespace Business.Concrete
 {
@@ -17,39 +19,48 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
 
             if (brand.Name.Length <= 2)
             {
-                Console.WriteLine("Marka ismi minimum iki karakterter olmalıdır.");
+                return new ErrorResult("Marka ismi minimum iki karakterter olmalıdır.");
+               // Console.WriteLine();
             }
             else
             {
                 _brandDal.Add(brand);
-
-                Console.WriteLine("Kayıt Tamamlanmıştır. \n Marka: " + brand.Name);
+                return new SuccessResult(Messages.BrandAdded);
+                
             }
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
+          
             _brandDal.Delete(brand);
+            return new SuccessResult( Messages.BrandDeleted);
         }
 
-        public List<Brand> GetAll()
+        public IResult Update (Brand brand)
         {
-            throw new NotImplementedException();
+
+            _brandDal.Update(brand);
+            return new SuccessResult(Messages.BrandUpdated);
         }
 
-        public List<Color> GetById()
+        public  IDataResult<List<Brand>> GetAll()
         {
-            throw new NotImplementedException();
+
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
+
         }
 
-        public void Update(Brand brand)
+        public IDataResult<Brand> GetById(int brandId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Brand>(_brandDal.Get(p => p.Id == brandId));
         }
+
+       
     }
 }
