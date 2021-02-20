@@ -12,6 +12,8 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //AddUser();
+             //AddCustomer();
             //AddCar();
             //AddColor();
             //AddBrand();
@@ -19,7 +21,9 @@ namespace ConsoleUI
             //GetCarsByBrandId();
 
 
-           //CarDelete();
+            //DeleteCar();
+
+            AddRental();
 
 
 
@@ -27,13 +31,69 @@ namespace ConsoleUI
 
 
 
-
-
-
-
         }
 
-        private static void CarDelete()
+        private static void AddRental()
+        {
+            Rental rental = new Rental();
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rental.CarId = 7;
+            rental.CustomerId = 2;
+            rental.RentDate = Convert.ToDateTime("23.02.2021");
+            //rental.ReturnDate = Convert.ToDateTime("24.01.2020"); 
+
+            var result = rentalManager.Add(rental,rental.CarId);
+            Console.WriteLine(result.Message);
+
+
+           
+        }
+
+        private static void AddCustomer()
+        {
+            Customer customer = new Customer();
+            customer.UserId = 1002;
+            customer.CompanyName = "Burger King";
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.Add(customer);
+
+            if (result.Success)
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void AddUser()
+        {
+            User user = new User();
+            user.FirstName = "Kerim";
+            user.LastName = "Taştan";
+            user.Email = "tastankerim@mail.com";
+            user.Password = "5432";
+
+
+
+
+
+
+
+
+            UserManager userManager = new UserManager(new EfUserDal());
+            
+          
+
+            var result = userManager.Add(user);
+            userManager.Add(user);
+           
+
+            if (result.Success)
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void DeleteCar()
         {
             Car car = new Car();
 
@@ -61,7 +121,7 @@ namespace ConsoleUI
             Brand brand = new Brand();
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             //brand.Id = 1; // identity açık olduğundan id girmiyorum.
-            brand.Name = "Mercedes";
+            brand.BrandName = "Mercedes";
             brandManager.Add(brand);
         }
 
@@ -69,7 +129,7 @@ namespace ConsoleUI
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             Brand brand = new Brand();
-            brand.Name = "Bmw";
+            brand.BrandName = "Bmw";
             brandManager.Add(brand);
         }
 
@@ -77,12 +137,13 @@ namespace ConsoleUI
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             Color color = new Color();
-            color.Name = "Mavi";
+            color.ColorName = "Mavi";
             colorManager.Add(color);
         }
 
         private static void DailyPrice()
         {
+           
             CarManager carManager = new CarManager(new EfCarDal());
 
             var result = carManager.GetDailyPrice();

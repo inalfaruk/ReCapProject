@@ -1,4 +1,4 @@
-﻿    using Core.DataAccess.EntityFramework;
+﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join r in context.Colors
                              on c.ColorId equals r.Id
 
-                             select new DailyPriceDto { CarId = c.Id, CarName = c.CarName, BrandName = b.Name, ColorName = r.Name, DailyPrice = c.DailyPrice };
+                             select new DailyPriceDto { CarId = c.Id, CarName = c.CarName, BrandName = b.BrandName, ColorName = r.ColorName, DailyPrice = c.DailyPrice };
                 return result.ToList();
             }       
         }
