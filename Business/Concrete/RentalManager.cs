@@ -35,8 +35,8 @@ namespace Business.Concrete
             else if (result.Data.ReturnDate != null)    //araç geri gelmiş ise yani returndate null değil ise 
             {
 
-
-                if (rental.RentDate >= DateTime.Now)   //araç eski bir tarihe kiralanamayacağı için 
+               
+                if (rental.RentDate >= DateTime.Now && rental.ReturnDate>=DateTime.Now)   //araç eski bir tarihe kiralanamayacağı için 
                 {
                     _rentalDal.Add(rental);
                     return new SuccessDataResult<Rental>(Messages.RentalAdded);
