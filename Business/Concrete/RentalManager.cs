@@ -26,10 +26,15 @@ namespace Business.Concrete
 
           var result = GetRentControl(carId);
 
-            if (result.Data == null)  // araç daha önce hiç kiralanmamışsa boş tablo döneceğinden kayıt alması için.
+            if (result.Data == null)                               // araç daha önce hiç kiralanmamışsa boş tablo döneceğinden kayıt alması için.
             {
-                _rentalDal.Add(rental);
-                return new SuccessDataResult<Rental>(Messages.CarAdded);
+                if (rental.RentDate >= DateTime.Now && rental.ReturnDate >= DateTime.Now)
+                {
+                    _rentalDal.Add(rental);
+                    return new SuccessDataResult<Rental>(Messages.RentalAdded);
+                }
+                else return new ErrorResult(Messages.RentDateError);
+              
             }
 
             else if (result.Data.ReturnDate != null)    //araç geri gelmiş ise yani returndate null değil ise 
@@ -80,6 +85,12 @@ namespace Business.Concrete
         {
             return  new SuccessDataResult<RentalDetailDto>(_rentalDal.RentControl(carId));
         
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetRentList()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentList());
+
         }
 
         public IResult Update(Rental rental)

@@ -12,8 +12,13 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            // AddRental();
+
+            RentList();
+
+           
             //AddUser();
-             //AddCustomer();
+            //AddCustomer();
             //AddCar();
             //AddColor();
             //AddBrand();
@@ -23,13 +28,23 @@ namespace ConsoleUI
 
             //DeleteCar();
 
-            AddRental();
+
 
 
 
             //  Inmemory();
 
+ static void RentList()
+            {
+                RentalManager rentalManager = new RentalManager(new EfRentalDal());
+                var result = rentalManager.GetRentList();
 
+                foreach (var rent in result.Data)
+                {
+                    Console.WriteLine("Araç = " + rent.CarName + " - Marka= " + rent.BrandName + " -  Renk= " + rent.ColorName + " - Günlük Ücret= " + rent.DailyPrice + " - Ad Soyad= " + rent.FirstName + " " + rent.LastName);
+
+                }
+            }
 
         }
 

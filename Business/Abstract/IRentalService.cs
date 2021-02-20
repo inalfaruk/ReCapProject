@@ -26,6 +26,8 @@ namespace Business.Abstract
 
         IDataResult<RentalDetailDto> GetRentControl(int carId);
 
+        IDataResult<List<RentalDetailDto>> GetRentList();
+
         
 
 

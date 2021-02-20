@@ -41,7 +41,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public List<RentalDetailDto> RentList()
+        public List<RentalDetailDto> GetRentList()
         {
             using (RentaCarContext context =new RentaCarContext())
 
