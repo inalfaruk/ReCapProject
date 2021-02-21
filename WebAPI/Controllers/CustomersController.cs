@@ -11,19 +11,21 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        IUserService _userService;
-        public UsersController(IUserService userService)
+        ICustomerService _customerService;
+
+        public CustomersController(ICustomerService costumerService)
         {
-            userService = _userService;
+            _customerService = costumerService;
+
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
 
-            var result = _userService.GetAll();
+            var result = _customerService.GetAll();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -36,9 +38,10 @@ namespace WebAPI.Controllers
 
 
 
+
         public IActionResult GetById(int id)
         {
-            var result = _userService.GetById(id);
+            var result = _customerService.GetById(id);
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -50,9 +53,9 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("add")]
-        public IActionResult Add(User user)
+        public IActionResult Add(Customer customer)
         {
-            var result = _userService.Add(user);
+            var result = _customerService.Add(customer);
 
             if (result.Success)
             {

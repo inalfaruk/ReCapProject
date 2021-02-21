@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Business.Abstract;
+using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +13,55 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ColorsController : ControllerBase
     {
+        IColorService _colorService;
+
+        public ColorsController(IColorService colorService)
+        {
+            _colorService = colorService;
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+
+            var result = _colorService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result);
+        }
+
+
+
+
+        public IActionResult GetById(int id)
+        {
+            var result = _colorService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+
+            }
+            return BadRequest(result);
+        }
+
+
+
+        [HttpPost("add")]
+        public IActionResult Add(Color color)
+        {
+            var result = _colorService.Add(color);
+
+            if (result.Success)
+            {
+                return Ok(result);
+
+            }
+            return BadRequest(result);
+        }
+
+
     }
 }
