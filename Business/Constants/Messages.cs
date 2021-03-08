@@ -49,5 +49,8 @@ namespace Bussiness.Constants
         public static string RentalRented;
         internal static string RentError="Araç zaten kirada olduğundan kiralanamaz";
         internal static string RentDateError="Araç bugünden daha önceki bir tarihe kiralanamaz";
+        internal static string CategoryLimitExceeded="En fazla 5 resim eklenebilir.";
+        internal static string ImageAdded="Resim Eklendi";
+        public static string AuthorizationDenied = "Yetkiniz yok";
     }
 }

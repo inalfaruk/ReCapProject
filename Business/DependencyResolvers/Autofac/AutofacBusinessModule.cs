@@ -1,11 +1,14 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
+using Business.CCS;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,10 +19,31 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {  //biri iproduct isterse ona productmanager ver    //singleinstance data tutulmayacak veri için kullanıyoruz
-            builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();
-        
+            builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();      
             builder.RegisterType<EfCarDal>().As<ICarDal>().SingleInstance();
 
+
+            builder.RegisterType<ColorManager>().As<IColorService>().SingleInstance();
+            builder.RegisterType<EfColorDal>().As<IColorDal>().SingleInstance();
+
+            builder.RegisterType<BrandManager>().As<IBrandService>().SingleInstance();
+            builder.RegisterType<EfBrandDal>().As<IBrandDal>().SingleInstance();
+
+            builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
+            builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance();
+
+            builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
+            builder.RegisterType<EfRentalDal>().As<IRentalDal>().SingleInstance();
+
+
+            builder.RegisterType<UserManager>().As<IUserService>();
+            builder.RegisterType<EfuserDal>().As<IUserDal>();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+            builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
+            builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

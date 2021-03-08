@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Entites
+namespace Business.ValidationRules.FluentValidation
 {
-    public interface IEntity
+    public class CarImageValidator
     {
     }
 }

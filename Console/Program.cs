@@ -79,34 +79,25 @@ namespace ConsoleUI
             }
         }
 
-        private static void AddUser()
-        {
-            User user = new User();
-            user.FirstName = "Kerim";
-            user.LastName = "Taştan";
-            user.Email = "tastankerim@mail.com";
-            user.Password = "5432";
+        //private static void AddUser()
+        //{
+        //    User2 user = new User2();
+        //    user.FirstName = "Kerim";
+        //    user.LastName = "Taştan";
+        //    user.Email = "tastankerim@mail.com";
+        //    user.Password = "5432";
 
 
-
-
-
-
-
-
-            UserManager userManager = new UserManager(new EfUserDal());
-            
-          
-
-            var result = userManager.Add(user);
-            userManager.Add(user);
+        //    UserManager2 userManager = new UserManager2(new EfUserDal2());
+        //    var result = userManager.Add(user);
+        //    userManager.Add(user);
            
 
-            if (result.Success)
-            {
-                Console.WriteLine(result.Message);
-            }
-        }
+        //    if (result.Success)
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
+        //}
 
         private static void DeleteCar()
         {
