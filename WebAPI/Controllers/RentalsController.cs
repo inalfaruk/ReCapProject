@@ -15,13 +15,13 @@ namespace WebAPI.Controllers
     {
         IRentalService _rentalService;
 
-        public RentalsController(IRentalService carService)
+        public RentalsController(IRentalService rentalSevice)
         {
 
-            _rentalService = carService;
+            _rentalService = rentalSevice;
         }
 
-         [HttpGet]
+         [HttpGet ("getall")]
         public IActionResult GetAll()
         {
 
@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
         }
 
 
-
+        [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
             var result = _rentalService.GetById(id);
@@ -61,6 +61,18 @@ namespace WebAPI.Controllers
                 return Ok(result);
 
             }
+            return BadRequest(result);
+        }
+        [HttpGet("getrentlist")]
+        public IActionResult GetRentList()
+        {
+            var result = _rentalService.GetRentList();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
             return BadRequest(result);
         }
     }

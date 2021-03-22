@@ -33,7 +33,7 @@ namespace DataAccess.Concrete.EntityFramework
                                    LastName = u.LastName,
                                    CompanyName = c.CompanyName,
                                    RentDate = r.RentDate,
-                                   ReturnDate = r.ReturnDate
+                                   ReturnDate = r.ReturnDate,                                   
                                   
                                };
                 

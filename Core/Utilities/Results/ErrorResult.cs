@@ -4,16 +4,14 @@ using System.Text;
 
 namespace Core.Utilities.Results
 {
-   public class ErrorResult :Result
+    public class ErrorResult:Result
     {
-
-        public ErrorResult(string messsage) : base(false, messsage)
+        public ErrorResult(string message) : base(false, message)
         {
 
         }
 
-
-        public ErrorResult() : base(false) //mesaj göndermek istemez isek
+        public ErrorResult() : base(false)
         {
 
         }

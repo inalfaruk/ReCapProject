@@ -27,5 +27,42 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }       
         }
+
+        public List<CarDetailListDto> GetAllCarDetail()
+        {
+            using (RentaCarContext context = new RentaCarContext())
+            {
+                var result = from car in context.Cars
+                             join c in context.Colors
+                             on car.ColorId equals c.Id
+                             join b in context.Brands
+                             on car.BrandId equals b.Id
+
+                             select new CarDetailListDto { Id = car.Id,BrandId=car.BrandId,ColorId=car.ColorId ,CarName = car.CarName, ColorName = c.ColorName, BrandName = b.BrandName, DailyPrice = car.DailyPrice };
+
+                return result.ToList();
+            }
+
+        }
+
+
+
+        public List<CarDetailListDto> GetCarDetailByBrandId(int brandId)
+        {
+            using (RentaCarContext context = new RentaCarContext())
+            {
+                var result = from car in context.Cars where car.BrandId==brandId
+                             join c in context.Colors
+                             on car.ColorId equals c.Id
+                             join b in context.Brands
+                             on car.BrandId equals b.Id
+
+                             select new CarDetailListDto { Id = car.Id, BrandId = car.BrandId, ColorId = car.ColorId, CarName = car.CarName, ColorName = c.ColorName, BrandName = b.BrandName, DailyPrice = car.DailyPrice };
+
+                return result.ToList();
+            }
+
+        }
+
     }
 }

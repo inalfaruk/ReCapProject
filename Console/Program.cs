@@ -113,7 +113,7 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            var result = carManager.GetAllCarsByBranId(1);
+            var result = carManager.GetAllCarsByBrandId(1);
 
             foreach (var car in result.Data)
             {

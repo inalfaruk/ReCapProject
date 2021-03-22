@@ -69,6 +69,21 @@ namespace DataAccess.Concrete.InMemory
             return _cars.Where(c => c.Id == carId).ToList();
         }
 
+        public List<CarDetailListDto> GetCarDetailByBrandId(int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailListDto> GetAllCarDetail()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailListDto> GetCarDetailList(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<DailyPriceDto> GetDailyPrice()
         {
             throw new NotImplementedException();
